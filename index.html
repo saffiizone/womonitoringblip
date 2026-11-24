@@ -100,7 +100,7 @@
     }
     html.light-theme #weekRangeBadge,
     html.light-theme #sidebarUserBadge,
-    html.light-theme #mainSidebar > div > div.sidebar-label.bg-\[\#111520\] {
+    html.light-theme #mainSidebar > div > div.sidebar-label.bg-\\[\\#111520\\] {
       background-color: #f8fafc !important;
       border-color: rgba(15, 23, 42, 0.1) !important;
       color: #0f172a !important;
@@ -112,7 +112,7 @@
       background-color: #f1f5f9 !important;
       color: #0f172a !important;
     }
-    html.light-theme #mainSidebar .nav-btn.bg-orange-500\/15 {
+    html.light-theme #mainSidebar .nav-btn.bg-orange-500\\/15 {
       background-color: rgba(249, 115, 22, 0.14) !important;
       color: #c2410c !important;
       border-color: rgba(249, 115, 22, 0.35) !important;
@@ -162,26 +162,26 @@
       color: #0f172a !important;
       border-color: rgba(15, 23, 42, 0.16) !important;
     }
-    html.light-theme .bg-\[\#0d1017\],
-    html.light-theme .bg-\[\#111520\],
-    html.light-theme .bg-\[\#131722\],
-    html.light-theme .bg-\[\#151923\],
-    html.light-theme .bg-\[\#090b10\] {
+    html.light-theme .bg-\\[\\#0d1017\\],
+    html.light-theme .bg-\\[\\#111520\\],
+    html.light-theme .bg-\\[\\#131722\\],
+    html.light-theme .bg-\\[\\#151923\\],
+    html.light-theme .bg-\\[\\#090b10\\] {
       background-color: #f8fafc !important;
       border-color: rgba(15, 23, 42, 0.1) !important;
     }
-    html.light-theme .bg-white\/\[0\.02\],
-    html.light-theme .bg-white\/\[0\.04\],
-    html.light-theme .bg-white\/\[0\.05\],
-    html.light-theme .bg-white\/\[0\.06\] {
+    html.light-theme .bg-white\\/\\[0\\.02\\],
+    html.light-theme .bg-white\\/\\[0\\.04\\],
+    html.light-theme .bg-white\\/\\[0\\.05\\],
+    html.light-theme .bg-white\\/\\[0\\.06\\] {
       background-color: rgba(15, 23, 42, 0.04) !important;
     }
-    html.light-theme .border-white\/10,
-    html.light-theme .border-white\/15,
-    html.light-theme .border-white\/\[0\.06\],
-    html.light-theme .border-white\/\[0\.07\],
-    html.light-theme .border-white\/\[0\.08\],
-    html.light-theme .border-white\/\[0\.09\] {
+    html.light-theme .border-white\\/10,
+    html.light-theme .border-white\\/15,
+    html.light-theme .border-white\\/\\[0\\.06\\],
+    html.light-theme .border-white\\/\\[0\\.07\\],
+    html.light-theme .border-white\\/\\[0\\.08\\],
+    html.light-theme .border-white\\/\\[0\\.09\\] {
       border-color: rgba(15, 23, 42, 0.1) !important;
     }
     html.light-theme .bg-orange-500.text-slate-950,
@@ -324,7 +324,6 @@
       border-bottom: 1.5px solid rgba(15, 23, 42, 0.24) !important;
     }
 
-    /* Animasi Kelip-kelip (Pulse & Glow) Oranye BLiP untuk bullet aktif / waiting / on progress */
     @keyframes pulse-glow-orange {
       0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.85); }
       70% { transform: scale(1.06); box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
@@ -341,7 +340,6 @@
     <!-- Sidebar -->
     <aside id="mainSidebar" class="w-full lg:w-72 shrink-0 lg:sticky lg:top-0 lg:h-screen bg-[#0d1017] border-b lg:border-b-0 lg:border-r border-white/[0.08] flex flex-col justify-between transition-all duration-200 z-40">
       <div class="overflow-y-auto p-4 space-y-5 flex-1">
-        <!-- Brand Header -->
         <div id="sidebarHeaderRow" class="flex items-center justify-between gap-2">
           <div id="sidebarBrandFull" class="flex items-center gap-2.5 min-w-0">
             <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-orange-500 to-amber-500 text-slate-950 font-extrabold flex items-center justify-center text-base shrink-0">
@@ -362,7 +360,6 @@
           </button>
         </div>
 
-        <!-- Primary Admin Action in Sidebar -->
         <div id="sidebarActionWrap" class="hidden">
           <button id="btnNewTicket" onclick="openAddModal()" title="Create New Work Order" class="w-full bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-400 hover:to-amber-400 text-slate-950 px-3.5 py-2.5 rounded-xl text-xs font-extrabold transition cursor-pointer flex items-center justify-center gap-2 shadow-sm">
             <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2.6" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/></svg>
@@ -370,7 +367,6 @@
           </button>
         </div>
 
-        <!-- Navigation -->
         <div class="space-y-1.5">
           <p class="sidebar-label px-2 text-[10px] font-bold uppercase tracking-widest text-slate-500">Workspace</p>
 
@@ -395,7 +391,6 @@
             <span class="sidebar-label truncate">System &amp; Access</span>
           </button>
 
-          <!-- Settings Sub-menu: Appearance / Theme -->
           <div id="settingsAppearanceSubmenu" class="sidebar-label ml-3 pl-3 border-l border-white/[0.1] pt-1 pb-1 space-y-1.5">
             <div class="flex items-center justify-between px-1">
               <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Appearance / Theme</span>
@@ -418,7 +413,6 @@
           </div>
         </div>
 
-        <!-- Live Sheet Sync Card -->
         <div class="sidebar-label bg-[#111520] border border-white/[0.08] rounded-2xl p-3 space-y-2">
           <div class="flex items-center justify-between gap-2">
             <div class="flex items-center gap-2 min-w-0">
@@ -435,7 +429,6 @@
         </div>
       </div>
 
-      <!-- Auth / User Footer -->
       <div class="p-4 border-t border-white/[0.08] space-y-3">
         <div id="googleBtnAuthBlock" class="space-y-1.5 text-center">
           <p class="sidebar-label text-[11px] italic text-slate-400">
@@ -464,7 +457,6 @@
     <!-- Right Workspace -->
     <div class="flex-1 min-w-0 flex flex-col">
 
-      <!-- Freeze Layer 1: Top Header -->
       <header id="mainTopbar" class="glass-topbar sticky top-0 z-40 border-b border-white/[0.08] px-4 md:px-7 py-2.5">
         <div class="max-w-[1600px] mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-3">
           <div class="min-w-0">
@@ -485,7 +477,6 @@
           </div>
 
           <div class="flex items-center gap-2.5 shrink-0">
-            <!-- Global Search -->
             <div class="relative flex-1 sm:flex-initial sm:w-48 xl:w-60">
               <svg class="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
                 <circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M21 21l-4.35-4.35"/>
@@ -493,7 +484,6 @@
               <input type="text" id="searchInput" oninput="debouncedSearch()" placeholder="Search customer, ticket ID..." class="w-full bg-[#111520] border border-white/15 rounded-xl pl-8 pr-3 py-1.5 text-xs text-slate-100 placeholder-slate-500 focus:border-orange-500 focus:outline-none">
             </div>
 
-            <!-- Date Range Filter -->
             <div id="dateSearchWrapper" class="relative shrink-0">
               <button type="button" onclick="toggleDatePopover(event)" class="bg-[#111520] hover:bg-[#161c2b] border border-white/15 rounded-xl px-3 py-1.5 text-xs flex items-center gap-2 transition cursor-pointer">
                 <svg class="w-3.5 h-3.5 text-orange-400 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
@@ -524,10 +514,8 @@
         </div>
       </header>
 
-      <!-- Main Content Container -->
       <main class="flex-1 px-4 md:px-7 py-4 max-w-[1600px] w-full mx-auto space-y-6">
 
-        <!-- Section 1: Weekly Overview Bento Grid -->
         <section id="weeklyOverviewSection" class="space-y-2.5">
           <div id="weeklySectionHeader" class="sticky-band sticky sticky-section-header z-30 -mx-4 md:-mx-7 px-4 md:px-7 py-2.5 flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center gap-2.5">
@@ -537,10 +525,8 @@
             </div>
           </div>
 
-          <!-- 6 Modern KPI Cards -->
           <div id="kpi-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-2.5"></div>
 
-          <!-- Expanded Weekly Data Drawer -->
           <div id="weeklyExpandedPanel" class="hidden surface-card rounded-2xl overflow-hidden border border-orange-500/35">
             <div class="px-5 py-3 bg-orange-500/[0.06] border-b border-white/10 flex flex-wrap items-center justify-between gap-2">
               <div class="flex items-center gap-2.5">
@@ -556,7 +542,6 @@
           </div>
         </section>
 
-        <!-- Section 2: Need Attention Work Orders -->
         <section id="needAttentionSection" class="space-y-2.5">
           <div id="needAttentionSectionHeader" class="sticky-band sticky sticky-section-header z-30 -mx-4 md:-mx-7 px-4 md:px-7 py-2.5 flex flex-wrap items-center justify-between gap-2">
             <div class="flex items-center gap-2.5">
@@ -566,9 +551,7 @@
             </div>
           </div>
 
-          <!-- 4 Division Selector Cards -->
           <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3">
-            <!-- 1. All Work Orders Queue -->
             <button type="button" onclick="selectDivisionTab('All')" id="btn-div-All" class="surface-card surface-card-hover group flex items-center justify-between p-3.5 rounded-2xl text-left cursor-pointer">
               <div class="flex items-center gap-3 min-w-0">
                 <div class="w-10 h-10 rounded-2xl bg-orange-500/15 border border-orange-500/30 flex items-center justify-center text-orange-400 shrink-0">
@@ -587,7 +570,6 @@
               </span>
             </button>
 
-            <!-- 2. Mapping Queue -->
             <button type="button" onclick="selectDivisionTab('Mapping')" id="btn-div-Mapping" class="surface-card surface-card-hover group flex items-center justify-between p-3.5 rounded-2xl text-left cursor-pointer">
               <div class="flex items-center gap-3 min-w-0">
                 <div class="w-10 h-10 rounded-2xl bg-sky-500/15 border border-sky-500/30 flex items-center justify-center text-sky-400 shrink-0">
@@ -606,7 +588,6 @@
               </span>
             </button>
 
-            <!-- 3. Survey Queue (Survey -> Report Survey -> BOQ) -->
             <button type="button" onclick="selectDivisionTab('Survey')" id="btn-div-Survey" class="surface-card surface-card-hover group flex items-center justify-between p-3.5 rounded-2xl text-left cursor-pointer">
               <div class="flex items-center gap-3 min-w-0">
                 <div class="w-10 h-10 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
@@ -625,7 +606,6 @@
               </span>
             </button>
 
-            <!-- 4. Handover Queue (Staging -> Materials & Equip. -> Forward WO) -->
             <button type="button" onclick="selectDivisionTab('Handover')" id="btn-div-Handover" class="surface-card surface-card-hover group flex items-center justify-between p-3.5 rounded-2xl text-left cursor-pointer">
               <div class="flex items-center gap-3 min-w-0">
                 <div class="w-10 h-10 rounded-2xl bg-violet-500/15 border border-violet-500/30 flex items-center justify-center text-violet-400 shrink-0">
@@ -645,9 +625,7 @@
             </button>
           </div>
 
-          <!-- Expandable Detail Panel -->
           <div id="needAttentionExpandedPanel" class="hidden space-y-3 pt-1">
-            <!-- Freeze Layer 3: Filter & Status Control Bar -->
             <div id="workOrderControlPanel" class="sticky-band sticky sticky-filter-bar z-20 rounded-2xl px-4 py-2.5">
               <div id="divisionFilterPanel" class="flex flex-wrap justify-between items-center gap-3">
                 <div id="status-filter-pills" class="flex gap-1.5 overflow-x-auto pb-1 sm:pb-0"></div>
@@ -662,13 +640,11 @@
               </div>
             </div>
 
-            <!-- Loader -->
             <div id="loader" class="text-center py-14 hidden">
               <div class="inline-block animate-spin rounded-full h-8 w-8 border-2 border-orange-500 border-t-transparent mb-3"></div>
               <p class="text-xs text-slate-400 font-medium">Fetching work orders...</p>
             </div>
 
-            <!-- Main Data Table -->
             <div id="table-wrapper" class="surface-card rounded-2xl overflow-hidden">
               <div class="overflow-x-auto" id="main-table-container"></div>
             </div>
@@ -716,7 +692,6 @@
           </div>
         </div>
 
-        <!-- Survey Initial Stages (3 Stages) -->
         <div id="newSurveyFields" class="space-y-3 bg-white/[0.02] p-3.5 rounded-2xl border border-white/[0.07]">
           <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Survey Stages (Up to BOQ)</p>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
@@ -741,7 +716,6 @@
           </div>
         </div>
 
-        <!-- Handover Initial Stages (3 Stages) -->
         <div id="newHandoverFields" class="space-y-3 hidden bg-white/[0.02] p-3.5 rounded-2xl border border-white/[0.07]">
           <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">Handover Stages (Solved Survey → Negotiation → Pending)</p>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
@@ -768,7 +742,6 @@
           </div>
         </div>
 
-        <!-- Mapping Initial Fields -->
         <div id="newMappingFields" class="space-y-3 hidden bg-white/[0.02] p-3.5 rounded-2xl border border-white/[0.07]">
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
             <div>
@@ -829,7 +802,6 @@
         </div>
       </div>
 
-      <!-- Customer Recap Summary Banner -->
       <div id="customerRecapBanner" class="hidden mb-4 bg-[#0d1017] border border-dashed border-orange-500/40 rounded-2xl p-4">
         <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-dashed border-white/15">
           <div>
@@ -886,10 +858,8 @@
   </div>
 
   <script>
-    // ================= CONFIGURATION =================
     const API_URL = "https://script.google.com/macros/s/AKfycbyy9-44zG4rOt3MnsR8NCPY0NlTBQBTnkuCXoUeoJmbmiqw9dvjDQ8ueOrv09P4DDgR/exec";
     const GOOGLE_CLIENT_ID = "478985076311-eh3rsa1o4m9od56egthrj15o6pog0sta.apps.googleusercontent.com";
-    // =================================================
 
     const SURVEY_STAGE_DEFS = [
       { key: "survey", label: "Survey", fullLabel: "Survey", bracketTags: ["survey"], opts: ["Queued", "Done", "On Progress", "Pending", "Cancel"] },
@@ -1695,7 +1665,7 @@
     }
 
     function normalizePillLogVal(v) {
-      const s = String(v || "").replace(/^[\[\]]+|[\[\]]+$/g, "").trim();
+      const s = String(v || "").replace(/^\[+|\]+$/g, "").trim();
       if (!s || s === "-" || s === "Not Yet" || s === "Waiting Process" || s.toLowerCase() === "queued") {
         return "Queued";
       }
@@ -1727,11 +1697,10 @@
     }
 
     function formatStageUpdateLine(rawLine, fallbackStatus = "") {
-      // Strip duplicated "Update >" prefixes from server log strings
       let cleaned = String(rawLine || "")
         .replace(/^(?:Update\s*>\s*)+/i, "")
         .replace(/^\[([^\]]+)\]\s*/, (_, stg) => {
-          const niceStage = stg.trim().replace(/\w/g, ch => ch.toUpperCase());
+          const niceStage = stg.trim().replace(/\b\w/g, ch => ch.toUpperCase());
           return `${niceStage} > `;
         })
         .replace(/\s*(?:→|->)\s*/g, " -> ")
@@ -1774,7 +1743,6 @@
       return fallbackStatus || "Open";
     }
 
-    // Handover flow: Solved Survey -> Negotiation -> Pending -> Open (Deal) / Closed
     function computeHandoverStatus(staging, materialEquip, forwardWo, fallbackStatus) {
       const stg = normalizeHandoverStaging(staging);
       const mat = normalizeStageVal(materialEquip);
@@ -1873,20 +1841,20 @@
         if (!stageOnlyObj) return true;
         const t = String(text || "").toLowerCase();
         if (stageOnlyObj.key === "onet") {
-          return /onet/.test(t) && !/partner/.test(t);
+          return /\bonet\b/.test(t) && !/\bpartner\b/.test(t);
         }
         if (stageOnlyObj.key === "partner") {
-          return /partner/.test(t) && !/onet/.test(t);
+          return /\bpartner\b/.test(t) && !/\bonet\b/.test(t);
         }
         if (stageOnlyObj.key === "survey") {
           const withoutReport = t.replace(/report\s*survey/g, "");
-          return /survey/.test(withoutReport);
+          return /\bsurvey\b/.test(withoutReport);
         }
         if (stageOnlyObj.key === "reportSurvey") {
           return /report\s*survey/.test(t);
         }
         if (stageOnlyObj.key === "boq") {
-          return /boq|po/.test(t);
+          return /\bboq\b|\bpo\b/.test(t);
         }
         return matchStageTag(t, stageOnlyObj);
       };
@@ -1914,7 +1882,7 @@
           if (stageOnlyObj && !belongsToStage(`${stageTitle} ${cleanMain}`)) continue;
           if (notePart && notePart !== "-" && !notes.includes(notePart)) notes.push(notePart);
           const transVal = transMatch[2].trim();
-          const pair = transVal.split(/→|->/).map(x => x.replace(/^[\[\]]+|[\[\]]+$/g, "").trim());
+          const pair = transVal.split(/→|->/).map(x => x.replace(/^\[+|\]+$/g, "").trim());
           if (pair.length === 2) {
             const p0 = normalizePillLogVal(pair[0]);
             const p1 = normalizePillLogVal(pair[1]);
@@ -1928,7 +1896,6 @@
             changes.push(`${stageTitle}: [${pSingle}]`);
           }
         } else if (isTicketLevelDetailText(cleanMain)) {
-          // Ticket status transitions are rendered exclusively in the top/bottom timeline anchors, never inside pill progress updates
           if (!stageOnlyObj && notePart && notePart !== "-" && !notes.includes(notePart)) notes.push(notePart);
           continue;
         } else if (/^\[mapping\]/i.test(cleanMain)) {
@@ -2297,10 +2264,10 @@
           const lTid = String(log.ticketId || log.workOrderId || log.id || log.ticket_id || "").trim().toLowerCase();
           const lCust = String(log.customer || log.workOrderName || log.client || log.customerName || "").trim().toLowerCase();
           const lDetail = String(log.detail || log.description || log.notes || log.message || "").toLowerCase();
-          if (lTid && tidClean) return lTid === tidClean;
-          if (custLower && lCust) return lCust === custLower;
-          if (custLower && lDetail) return lDetail.includes(custLower);
-          return false;
+          const matchTid = Boolean(lTid && tidClean && lTid === tidClean);
+          const matchCust = Boolean(custLower && lCust && lCust === custLower);
+          const matchDetailCust = Boolean(custLower && lDetail && lDetail.includes(custLower));
+          return matchTid || matchCust || matchDetailCust;
         });
 
         const stageEntries = ticketLogs
@@ -2383,7 +2350,7 @@
                       <div class="bg-[#0d1017] border border-white/[0.07] rounded-xl p-3 text-xs space-y-1">
                         <div class="flex flex-wrap items-center justify-between gap-2">
                           <span class="font-mono-code text-[11px] text-orange-300 font-semibold">${cleanTimestamp(log.timestamp)}</span>
-                          <span class="text-[11px] text-slate-400">by <strong class="text-slate-200">${parsed.pic}</strong></span>
+                          <span class="text-[11px] text-slate-400">PIC <strong class="text-slate-200">${parsed.pic}</strong></span>
                         </div>
                         <ul class="space-y-0.5 text-[11px] text-slate-200">
                           ${parsed.changes.map(ch => `<li>• ${ch}</li>`).join("")}
@@ -3342,7 +3309,6 @@
         const fetched = extractLogsArray(data);
         const cached = Array.isArray(cachedHistory[type]) ? cachedHistory[type] : [];
 
-        // Keep local stage pill transition logs (within 60s) so generic server status strings don't overwrite pill details
         const nowOptMs = Date.now();
         const localPillLogs = cached.filter(cItem => {
           if (!cItem._optimistic) return false;
@@ -3455,13 +3421,13 @@
           return defs.find(d => d.key === "reportSurvey") || null;
         }
         const noReport = t.replace(/report[\s_-]*survey/g, " ");
-        if (/survey/.test(noReport)) {
+        if (/\bsurvey\b/.test(noReport)) {
           return defs.find(d => d.key === "survey") || null;
         }
-        if (/boq|po/.test(t)) {
+        if (/\bboq\b|\bpo\b/.test(t)) {
           return defs.find(d => d.key === "boq") || null;
         }
-        if (/staging/.test(t)) {
+        if (/\bstaging\b/.test(t)) {
           return defs.find(d => d.key === "staging") || null;
         }
         if (/material|equip|procurement/.test(t)) {
@@ -3470,10 +3436,10 @@
         if (/forward[\s_-]*wo|installation[\s_-]*wo/.test(t)) {
           return defs.find(d => d.key === "forwardWo") || null;
         }
-        if (/onet/.test(t)) {
+        if (/\bonet\b/.test(t)) {
           return defs.find(d => d.key === "onet") || null;
         }
-        if (/partner/.test(t)) {
+        if (/\bpartner\b/.test(t)) {
           return defs.find(d => d.key === "partner") || null;
         }
         return defs.find(d => {
@@ -3497,21 +3463,21 @@
           let hit = false;
           if (d.key === "survey") {
             const withoutReport = lower.replace(/report[\s_-]*survey/g, " ");
-            hit = /survey/.test(withoutReport);
+            hit = /\bsurvey\b/.test(withoutReport);
           } else if (d.key === "reportSurvey") {
             hit = /report[\s_-]*survey/.test(lower);
           } else if (d.key === "boq") {
-            hit = /boq|po/.test(lower);
+            hit = /\bboq\b|\bpo\b/.test(lower);
           } else if (d.key === "staging") {
-            hit = /staging/.test(lower);
+            hit = /\bstaging\b/.test(lower);
           } else if (d.key === "materialEquip") {
             hit = /material|equip|procurement/.test(lower);
           } else if (d.key === "forwardWo") {
             hit = /forward[\s_-]*wo|installation[\s_-]*wo/.test(lower);
           } else if (d.key === "onet") {
-            hit = /onet/.test(lower);
+            hit = /\bonet\b/.test(lower);
           } else if (d.key === "partner") {
-            hit = /partner/.test(lower);
+            hit = /\bpartner\b/.test(lower);
           }
           if (hit && !matched.includes(d.label)) matched.push(d.label);
         }
@@ -3543,7 +3509,6 @@
         currentTicketStatus = String(lastLog.status || "Open").trim();
       }
 
-      // Top anchor: initial ticket status & earliest creation timestamp
       let openStatusLabel = "Open";
       if (divisionType === "Handover") {
         const stgNow = ticketRecord ? normalizeHandoverStaging(ticketRecord.staging) : "Negotiation";
@@ -3580,7 +3545,6 @@
         }
       }
 
-      // Bottom anchor: shown ONLY when ticket status is final (Closed / Done / Cancel / Outcover)
       const isFinalClosed = ["Closed", "Done", "Cancel", "Outcover"].includes(currentTicketStatus);
       let closedStatusLabel = currentTicketStatus === "Done" ? "Closed" : currentTicketStatus;
       let latestTsRaw = "-";
@@ -3630,7 +3594,6 @@
         ? chronologicalLogs
         : filteredHistoryLogs;
 
-      // Filter out pure ticket-creation/status-only entries so middle cards show ONLY pill status transitions
       const pillEntryCards = [];
       logsToRender.forEach((item, rawIdx) => {
         const parsed = parseResiLogEntry(item, "-", "", stageObj);
@@ -3815,7 +3778,6 @@
 
       drawHeaderBanner();
 
-      // Top Anchor in PDF ([Open] date & time)
       if (anchors) {
         ensureSpace(14);
         doc.setDrawColor(225, 29, 72);
@@ -3907,7 +3869,6 @@
         y += cardH + 2;
       });
 
-      // Bottom Anchor in PDF ([Closed] date & time — shown only when final)
       if (anchors && anchors.isFinalClosed) {
         ensureSpace(14);
         doc.setDrawColor(16, 185, 129);
