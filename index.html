@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BLiP - Work Order Monitoring BI</title>
+  <title>BLiP Beta 3.0.1</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -323,6 +323,16 @@
     html.light-theme .table-head-modern {
       border-bottom: 1.5px solid rgba(15, 23, 42, 0.24) !important;
     }
+
+    /* Animasi Kelip-kelip (Pulse & Glow) Oranye BLiP untuk bullet aktif / waiting / on progress */
+    @keyframes pulse-glow-orange {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.85); }
+      70% { transform: scale(1.06); box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+    }
+    .active-pulse {
+      animation: pulse-glow-orange 1.6s infinite ease-in-out;
+    }
   </style>
 </head>
 <body class="min-h-screen bg-[#090b10] text-slate-200">
@@ -340,7 +350,7 @@
             <div class="min-w-0">
               <div class="flex items-center gap-1.5">
                 <span class="font-extrabold text-white text-sm tracking-tight truncate">BLiP</span>
-                <span class="px-1.5 py-0.5 text-[10px] font-mono-code font-bold rounded-md bg-orange-500/15 text-orange-300 border border-orange-500/30">v5.1.1</span>
+                <span class="px-1.5 py-0.5 text-[10px] font-mono-code font-bold rounded-md bg-orange-500/15 text-orange-300 border border-orange-500/30">Beta 3.0.1</span>
               </div>
             </div>
           </div>
@@ -819,17 +829,17 @@
         </div>
       </div>
 
-      <!-- Customer Receipt Summary Banner -->
-      <div id="customerReceiptBanner" class="hidden mb-4 bg-[#0d1017] border border-dashed border-orange-500/40 rounded-2xl p-4">
+      <!-- Customer Recap Summary Banner -->
+      <div id="customerRecapBanner" class="hidden mb-4 bg-[#0d1017] border border-dashed border-orange-500/40 rounded-2xl p-4">
         <div class="flex flex-wrap items-center justify-between gap-3 pb-3 border-b border-dashed border-white/15">
           <div>
-            <p class="text-[10px] font-mono-code uppercase tracking-widest text-orange-400 font-bold">WORK ORDER ACTIVITY RECEIPT</p>
-            <h3 id="receiptCustomerName" class="text-base font-extrabold text-white mt-0.5">-</h3>
-            <p id="receiptTicketMeta" class="text-xs font-mono-code text-slate-400 mt-0.5">-</p>
+            <p class="text-[10px] font-mono-code uppercase tracking-widest text-orange-400 font-bold">WORK ORDER ACTIVITY Recap</p>
+            <h3 id="RecapCustomerName" class="text-base font-extrabold text-white mt-0.5">-</h3>
+            <p id="RecapTicketMeta" class="text-xs font-mono-code text-slate-400 mt-0.5">-</p>
           </div>
-          <div id="receiptCurrentStatus" class="text-right"></div>
+          <div id="RecapCurrentStatus" class="text-right"></div>
         </div>
-        <div id="receiptMilestoneStrip" class="pt-3 grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs"></div>
+        <div id="RecapMilestoneStrip" class="pt-3 grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs"></div>
       </div>
 
       <div id="historyLoader" class="text-center py-12 hidden">
@@ -865,8 +875,8 @@
         </div>
         <div class="bg-[#0d1017] p-4 rounded-2xl border border-white/[0.08]">
           <p class="text-slate-500 text-[10px] uppercase tracking-wider font-bold">Build Release</p>
-          <p class="font-bold text-white mt-1">BLiP Dashboard v5.1.1</p>
-          <p class="text-[11px] text-slate-400 mt-1">3-Division Work Orders (Mapping, Survey, Handover) • Customer Receipt Logs • Interactive Stage Pipelines</p>
+          <p class="font-bold text-white mt-1">BLiP Dashboard Beta 3.0.1</p>
+          <p class="text-[11px] text-slate-400 mt-1">3-Division Work Orders (Mapping, Survey, Handover) • Customer Recap Logs • Interactive Stage Pipelines</p>
         </div>
       </div>
       <div class="mt-5 flex justify-end">
@@ -1721,7 +1731,7 @@
       let cleaned = String(rawLine || "")
         .replace(/^(?:Update\s*>\s*)+/i, "")
         .replace(/^\[([^\]]+)\]\s*/, (_, stg) => {
-          const niceStage = stg.trim().replace(/\b\w/g, ch => ch.toUpperCase());
+          const niceStage = stg.trim().replace(/\w/g, ch => ch.toUpperCase());
           return `${niceStage} > `;
         })
         .replace(/\s*(?:→|->)\s*/g, " -> ")
@@ -1863,20 +1873,20 @@
         if (!stageOnlyObj) return true;
         const t = String(text || "").toLowerCase();
         if (stageOnlyObj.key === "onet") {
-          return /\bonet\b/.test(t) && !/\bpartner\b/.test(t);
+          return /onet/.test(t) && !/partner/.test(t);
         }
         if (stageOnlyObj.key === "partner") {
-          return /\bpartner\b/.test(t) && !/\bonet\b/.test(t);
+          return /partner/.test(t) && !/onet/.test(t);
         }
         if (stageOnlyObj.key === "survey") {
           const withoutReport = t.replace(/report\s*survey/g, "");
-          return /\bsurvey\b/.test(withoutReport);
+          return /survey/.test(withoutReport);
         }
         if (stageOnlyObj.key === "reportSurvey") {
           return /report\s*survey/.test(t);
         }
         if (stageOnlyObj.key === "boq") {
-          return /\bboq\b|\bpo\b/.test(t);
+          return /boq|po/.test(t);
         }
         return matchStageTag(t, stageOnlyObj);
       };
@@ -2163,21 +2173,27 @@
             const isCancel = isStepCancelVal(st.key, rawVal);
             const isActiveState = isStepActiveVal(st.key, rawVal);
 
-            const isTicketOpen = (t.rawStatus === "Open") || (t.computedStatus === "Open");
+            const isTicketClosedOrCancel = ["Closed", "Cancel", "Done", "Outcover"].includes(t.computedStatus);
             let isOngoingStep = false;
-            if (!isTicketOpen) {
+
+            if (!isTicketClosedOrCancel && !isDone && !isCancel) {
               if (isActiveState && st.key !== "staging") {
                 isOngoingStep = true;
-              } else if (st.key === "staging" && rawVal === "Negotiation" && t.computedStatus !== "Closed") {
+              } else if (st.key === "staging" && rawVal === "Negotiation") {
                 isOngoingStep = true;
-              } else if (sIdx === 0 && t.computedStatus === "On Progress" && !rawVal) {
+              } else if (sIdx === 0 && !rawVal) {
                 isOngoingStep = true;
               } else if (sIdx > 0 && !rawVal) {
                 const prevDef = stageDefs[sIdx - 1];
                 const prevVal = prevDef.key === "staging"
                   ? normalizeHandoverStaging(t[prevDef.key])
                   : normalizeStageVal(t[prevDef.key]);
-                if (isStepDoneVal(prevDef.key, prevVal) || (prevDef.key === "onet" && (prevVal === "Onet*" || prevVal === "Outcover"))) {
+
+                if (pipelineType === "Mapping") {
+                  if (prevDef.key === "onet" && (prevVal === "Onet*" || prevVal === "Outcover")) {
+                    isOngoingStep = true;
+                  }
+                } else if (isStepDoneVal(prevDef.key, prevVal)) {
                   isOngoingStep = true;
                 }
               }
@@ -2195,7 +2211,7 @@
 
             const leftLineColor = prevStageDone ? "bg-emerald-500/80" : "bg-white/10";
             const rightLineColor = (isDone || (st.key === "onet" && (rawVal === "Onet*" || rawVal === "Outcover")))
-              ? "bg-orange-500/80"
+              ? "bg-emerald-500/80"
               : "bg-white/10";
 
             let circleStyle = "bg-[#0d1017] border border-white/15 text-slate-500";
@@ -2205,7 +2221,7 @@
             let subColor = "text-slate-500";
 
             if (isDone) {
-              circleStyle = "bg-emerald-500 border border-emerald-400 text-slate-950";
+              circleStyle = "bg-emerald-500 border border-emerald-400 text-slate-950 shadow-md shadow-emerald-500/25";
               iconHtml = checkSvg;
               labelColor = "text-slate-100 font-bold";
               subText = rawVal;
@@ -2216,11 +2232,11 @@
               labelColor = "text-slate-400 font-bold";
               subText = rawVal;
               subColor = "text-slate-500 font-semibold";
-            } else if (isOngoingStep || (isActiveState && !isTicketOpen)) {
-              circleStyle = "bg-orange-500/20 border-2 border-orange-500 text-orange-400";
+            } else if (isOngoingStep) {
+              circleStyle = "bg-orange-500/20 border-2 border-orange-500 text-orange-400 active-pulse";
               iconHtml = dotSvg;
               labelColor = "text-orange-300 font-bold";
-              subText = st.key === "staging" ? (rawVal || "Negotiation") : (rawVal || "Queued");
+              subText = st.key === "staging" ? (rawVal || "Negotiation") : (rawVal || "Waiting");
               subColor = "text-orange-400 font-semibold";
             } else if (!rawVal) {
               subText = "Queued";
@@ -2248,10 +2264,10 @@
                 <span class="text-[10px] mt-0.5 leading-tight ${subColor}">${subText}</span>
 
                 <button onclick="clickStepperPoint('${t.ticketId}', '${st.key}', '${pipelineType}')"
-                  class="mt-1 px-2 py-0.5 rounded-md hover:bg-white/[0.06] transition-transform duration-150 cursor-pointer ${isSelectedStage ? 'rotate-180 text-orange-400' : 'text-slate-500 hover:text-orange-400'}"
+                  class="mt-1 px-2 py-0.5 rounded-md hover:bg-orange-500/15 transition-transform duration-200 cursor-pointer ${isSelectedStage ? 'rotate-180 text-orange-400' : 'text-orange-500 hover:text-orange-400'}"
                   title="Toggle ${st.label} drawer">
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 7l6 5 6-5M6 13l6 5 6-5"/>
                   </svg>
                 </button>
               </div>
@@ -3128,12 +3144,12 @@
       return list.find(item => String(item.ticketId).trim() === String(ticketId).trim()) || null;
     }
 
-    function renderCustomerReceiptHeader(type, ticketId) {
-      const banner = document.getElementById("customerReceiptBanner");
-      const custNameEl = document.getElementById("receiptCustomerName");
-      const metaEl = document.getElementById("receiptTicketMeta");
-      const statusEl = document.getElementById("receiptCurrentStatus");
-      const stripEl = document.getElementById("receiptMilestoneStrip");
+    function renderCustomerRecapHeader(type, ticketId) {
+      const banner = document.getElementById("customerRecapBanner");
+      const custNameEl = document.getElementById("RecapCustomerName");
+      const metaEl = document.getElementById("RecapTicketMeta");
+      const statusEl = document.getElementById("RecapCurrentStatus");
+      const stripEl = document.getElementById("RecapMilestoneStrip");
 
       if (!historySingleCustomerMode || !ticketId || ticketId === "ALL") {
         banner.classList.add("hidden");
@@ -3278,7 +3294,7 @@
         typeSwitch.classList.add("hidden");
         custSelect.classList.add("hidden");
         subtitleEl.classList.remove("hidden");
-        subtitleEl.innerText = "Chronological journey from initial request to completion (Receipt View)";
+        subtitleEl.innerText = "Chronological journey from initial request to completion (Recap View)";
 
         document.getElementById("historyTypeLabel").innerText = `${type} • Customer Activity Recap`;
         document.getElementById("historyModalTitle").innerText = `${custName} (${historyLockedTicketId})`;
@@ -3311,7 +3327,7 @@
           }).join("");
       }
 
-      document.getElementById("customerReceiptBanner").classList.add("hidden");
+      document.getElementById("customerRecapBanner").classList.add("hidden");
       document.getElementById("historyListContainer").innerHTML = "";
       document.getElementById("historyLoader").classList.remove("hidden");
       document.getElementById("historyModal").classList.remove("hidden");
@@ -3416,7 +3432,7 @@
       });
 
       if (historySingleCustomerMode) {
-        renderCustomerReceiptHeader(historyTypeActive, historyLockedTicketId);
+        renderCustomerRecapHeader(historyTypeActive, historyLockedTicketId);
       }
 
       renderHistoryTimeline();
@@ -3439,13 +3455,13 @@
           return defs.find(d => d.key === "reportSurvey") || null;
         }
         const noReport = t.replace(/report[\s_-]*survey/g, " ");
-        if (/\bsurvey\b/.test(noReport)) {
+        if (/survey/.test(noReport)) {
           return defs.find(d => d.key === "survey") || null;
         }
-        if (/\bboq\b|\bpo\b/.test(t)) {
+        if (/boq|po/.test(t)) {
           return defs.find(d => d.key === "boq") || null;
         }
-        if (/\bstaging\b/.test(t)) {
+        if (/staging/.test(t)) {
           return defs.find(d => d.key === "staging") || null;
         }
         if (/material|equip|procurement/.test(t)) {
@@ -3454,10 +3470,10 @@
         if (/forward[\s_-]*wo|installation[\s_-]*wo/.test(t)) {
           return defs.find(d => d.key === "forwardWo") || null;
         }
-        if (/\bonet\b/.test(t)) {
+        if (/onet/.test(t)) {
           return defs.find(d => d.key === "onet") || null;
         }
-        if (/\bpartner\b/.test(t)) {
+        if (/partner/.test(t)) {
           return defs.find(d => d.key === "partner") || null;
         }
         return defs.find(d => {
@@ -3481,21 +3497,21 @@
           let hit = false;
           if (d.key === "survey") {
             const withoutReport = lower.replace(/report[\s_-]*survey/g, " ");
-            hit = /\bsurvey\b/.test(withoutReport);
+            hit = /survey/.test(withoutReport);
           } else if (d.key === "reportSurvey") {
             hit = /report[\s_-]*survey/.test(lower);
           } else if (d.key === "boq") {
-            hit = /\bboq\b|\bpo\b/.test(lower);
+            hit = /boq|po/.test(lower);
           } else if (d.key === "staging") {
-            hit = /\bstaging\b/.test(lower);
+            hit = /staging/.test(lower);
           } else if (d.key === "materialEquip") {
             hit = /material|equip|procurement/.test(lower);
           } else if (d.key === "forwardWo") {
             hit = /forward[\s_-]*wo|installation[\s_-]*wo/.test(lower);
           } else if (d.key === "onet") {
-            hit = /\bonet\b/.test(lower);
+            hit = /onet/.test(lower);
           } else if (d.key === "partner") {
-            hit = /\bpartner\b/.test(lower);
+            hit = /partner/.test(lower);
           }
           if (hit && !matched.includes(d.label)) matched.push(d.label);
         }
@@ -3600,7 +3616,7 @@
       const container = document.getElementById("historyListContainer");
       const stageDefs = getStageDefsForType(historyTypeActive);
       const stageObj = historyStageFilterKey ? stageDefs.find(s => s.key === historyStageFilterKey) : null;
-      const receiptRecord = historySingleCustomerMode
+      const RecapRecord = historySingleCustomerMode
         ? findWorkOrderRecord(historyTypeActive, historyLockedTicketId)
         : null;
 
@@ -3626,7 +3642,7 @@
       });
 
       const anchors = historySingleCustomerMode
-        ? computeTimelineAnchors(historyTypeActive, receiptRecord, chronologicalLogs)
+        ? computeTimelineAnchors(historyTypeActive, RecapRecord, chronologicalLogs)
         : null;
 
       const topAnchorHtml = anchors ? `
@@ -3746,11 +3762,11 @@
 
       let targetLabel = "";
       let logsForPdf = filteredHistoryLogs;
-      let receiptRecord = null;
+      let RecapRecord = null;
 
       if (historySingleCustomerMode && historyLockedTicketId) {
-        receiptRecord = findWorkOrderRecord(historyTypeActive, historyLockedTicketId);
-        const custName = (receiptRecord && receiptRecord.customer) || (filteredHistoryLogs[0] && filteredHistoryLogs[0].customer) || "-";
+        RecapRecord = findWorkOrderRecord(historyTypeActive, historyLockedTicketId);
+        const custName = (RecapRecord && RecapRecord.customer) || (filteredHistoryLogs[0] && filteredHistoryLogs[0].customer) || "-";
         targetLabel = `${historyLockedTicketId} - ${custName}`;
         logsForPdf = [...filteredHistoryLogs].reverse();
       } else {
@@ -3763,7 +3779,7 @@
         .filter(({ parsed }) => !historySingleCustomerMode || parsed.changes.length > 0);
 
       const anchors = historySingleCustomerMode
-        ? computeTimelineAnchors(historyTypeActive, receiptRecord, logsForPdf)
+        ? computeTimelineAnchors(historyTypeActive, RecapRecord, logsForPdf)
         : null;
 
       let y = 0;
@@ -3776,7 +3792,7 @@
         doc.setFont("helvetica", "bold");
         doc.setFontSize(12.5);
         const headingTitle = historySingleCustomerMode
-          ? `BLiP — WORK ORDER ACTIVITY RECEIPT (${historyTypeActive.toUpperCase()})`
+          ? `BLiP — WORK ORDER ACTIVITY Recap (${historyTypeActive.toUpperCase()})`
           : stageObj
             ? `BLiP — ACTIVITY LOG • ${stageObj.fullLabel.toUpperCase()} (${historyTypeActive.toUpperCase()})`
             : `BLiP — ALL ACTIVITY LOG (${historyTypeActive.toUpperCase()})`;
@@ -3917,7 +3933,7 @@
       }
 
       const safeFile = targetLabel.replace(/[^a-zA-Z0-9-_]/g, "_");
-      const filePrefix = historySingleCustomerMode ? "BLiP_Customer_Receipt" : "BLiP_All_Activity_Log";
+      const filePrefix = historySingleCustomerMode ? "BLiP_Customer_Recap" : "BLiP_All_Activity_Log";
       doc.save(`${filePrefix}_${safeFile}.pdf`);
     }
 
